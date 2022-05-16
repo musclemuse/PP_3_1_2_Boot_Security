@@ -19,7 +19,7 @@
         <tr>
             <th>Id</th>
             <th>Username</th>
-            <th>Profession</th>
+            <th>Firstname</th>
             <th>Age</th>
             <th>Action</th>
         </tr>
@@ -28,7 +28,7 @@
         <tr th:each="user : ${users}">
             <td th:text="${user.getId()}"></td>
             <td th:text="${user.getUsername()}"></td>
-            <td th:text="${user.getProfession()}"></td>
+            <td th:text="${user.getFirstname()}"></td>
             <td th:text="${user.getAge()}"></td>
             <td>
                 <form th:action="@{updateInfo(id=${user.id})}" th:object="${user}">

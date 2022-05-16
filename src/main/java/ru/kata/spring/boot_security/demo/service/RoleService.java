@@ -5,22 +5,31 @@ import org.springframework.stereotype.Service;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.repository.RoleRepository;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 public class RoleService {
     private RoleRepository roleRepository;
-    @Autowired
-    public void setRoleRepository(RoleRepository roleRepository) {
+
+    public RoleService(RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
     }
 
-    @PersistenceContext
-    private EntityManager entityManager;
 
     public List<Role> getAllRoles() {
-        return entityManager.createQuery("select role from Role role ", Role.class).getResultList();
+        return roleRepository.findAll();
+    }
+
+
+    @PostConstruct
+    @Transactional
+    void AddRoles () {
+
+        roleRepository.save(new Role(1L, "ROLE_ADMIN"));
+        roleRepository.save(new Role(2L, "ROLE_USER"));
     }
 }

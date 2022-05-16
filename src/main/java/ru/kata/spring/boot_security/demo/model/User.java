@@ -10,7 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Data
@@ -32,7 +33,7 @@ public class User implements UserDetails {
     private String password;
 
     @Column
-    private String profession;
+    private String firstname;
 
     @Column
     private Integer age;
@@ -41,11 +42,19 @@ public class User implements UserDetails {
     @JoinTable(name = "joint_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Collection<Role> roles = new ArrayList<>();
+    private Set<Role> roles = new HashSet<>();
 
-    public User(String name, String profession, Integer age) {
+    public User(String name, String firstname, Integer age) {
         this.username = name;
-        this.profession = profession;
+        this.firstname = firstname;
+        this.age = age;
+    }
+
+    public User(Long id, String username, String password, String firstname, Integer age) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.firstname = firstname;
         this.age = age;
     }
 

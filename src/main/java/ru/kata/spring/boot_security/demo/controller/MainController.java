@@ -12,6 +12,7 @@ import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
+import javax.annotation.PostConstruct;
 import java.security.Principal;
 
 
@@ -28,14 +29,22 @@ public class MainController {
         this.roleService = roleService;
     }
 
+
+//    @PostConstruct
+//    void AddUsers() {
+//
+//        userService.add(new User((long) 1, "admin@admin.ru", "$2a$12$5/LJTcY5BTW/1dfKXfkONu9SiZbiZfAy2B41V2MuIVrimLrY4ew0K", "admin", 32));
+//        userService.add(new User((long) 2, "user@user.ru", "$2a$12$T3fRruYVddVDEv/6kbYOhuKSMp4YKx/YvjYiYvtL.QjiEF2rNIZuy", "user", 68));
+//    }
+
     @GetMapping("/user")
     public String userInfo(Principal principal, Model model) {
         User user = userService.getUserByUsername(principal.getName());
         model.addAttribute("user", user);
-        return "user" ;
+        return "user";
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/")
     public String adminPage() {
         return "redirect:/index";
     }
