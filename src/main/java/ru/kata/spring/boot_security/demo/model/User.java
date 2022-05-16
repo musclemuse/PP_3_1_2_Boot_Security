@@ -43,6 +43,12 @@ public class User implements UserDetails {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+    @Transient
+    Role role1 = new Role(1L, "ROLE_ADMIN");
+    @Transient
+    Role role2 = new Role(2L, "ROLE_USER");
+
+
 
     public User(String name, String firstname, Integer age) {
         this.username = name;

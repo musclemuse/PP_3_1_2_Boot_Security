@@ -57,30 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return authenticationProvider;
     }
 
-//    @SuppressWarnings("deprecation")
-//    @Bean
-//    public static NoOpPasswordEncoder passwordEncoder() {
-//        return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
-//    }
 
-    // аутентификация inMemory
-//    @Bean
-//    @Override
-//    public UserDetailsService userDetailsService() {
-//        UserDetails user =
-//                User.builder()
-//                        .username("user")
-//                        .password("user")
-//                        .roles("USER")
-//                        .build ();
-//        UserDetails admin =
-//                User.builder()
-//                        .username("admin")
-//                        .password("admin")
-//                        .roles("ADMIN", "USER")
-//                        .build ();
-//        return new InMemoryUserDetailsManager(user, admin);
-//    }
 
 
 }
